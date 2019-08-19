@@ -9,7 +9,6 @@ Additional optional material, including a jar file and two CSV files have been p
 
 A file must be formatted with a word in the first column, its accompanying definition in the second column, an (optional) hint in the third column, and an (optional) time for this word to be reviewed (expressed in milliseconds) in the fourth column. In essence, one can make their own CSV for Escrever with only the word and definition in the first two columns. 
 
-Known bugs and limitations:
-The first word of every imported CSV file contains three extra characters "ï<<¿" this should not affect the learning experience.
 Special characters are not currently supported.
+
 To save a file, a file must not be open anywhere else. 
