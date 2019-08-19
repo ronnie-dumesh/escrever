@@ -5,7 +5,7 @@ The purpose of this project is to increase my own comfortability with Java and d
 
 To start, select a file through the “Import CSV” button on the top right when running the program.
 
-Additional optional material, including a jar file and two CSV files have been provided [here](https://drive.google.com/open?id=1jlDCsZzStv6cWJSFRfvu8a2eI28Lm4cv). SampleCSV.csv contains six rows that act as test cases, and 1000words.csv provides a more extensive and practical example. sampleCSVbefore.png illustrates how each of those columns are different test cases.
+Additional optional material, including a jar file and two CSV files have been provided [here](https://drive.google.com/open?id=1C8W6GjXpLuzeruyDtIdhRgni1PBWS4Hl). SampleCSV.csv contains six rows that act as test cases, and 1000words.csv provides a more extensive and practical example. sampleCSVbefore.png illustrates how each of those columns are different test cases.
 
 A file must be formatted with a word in the first column, its accompanying definition in the second column, an (optional) hint in the third column, and an (optional) time for this word to be reviewed (expressed in milliseconds) in the fourth column. In essence, one can make their own CSV for Escrever with only the word and definition in the first two columns. 
 
