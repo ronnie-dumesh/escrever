@@ -34,7 +34,7 @@ public class csvModifier {
 			while(inputStream.hasNext()) {
 				String data = inputStream.nextLine();
 				String[] values = data.split(",");
-				Card card = new Card(values);
+				Card card = makeCard(values);
 				queue.add(card);
 			}
 			
@@ -44,6 +44,48 @@ public class csvModifier {
 			e.printStackTrace();
 		}
 		return queue; 
+	}
+	
+	/**makeCard interprets the values parameter to decide which
+	 * Card constructor to call. It then returns a Card object.
+	 * 
+	 * makeCard uses the length of the values array to determine the appropriate
+	 * Card constructor. 
+	 * 
+	 * Since the third value of the values array can be either a hint or
+	 * a time when values.length == 3, it uses a try statement to determine which
+	 * constructor to use
+	 * 
+	 * Precondition: 1 < values.length < 5
+	 * @param values is a String array that contains in order
+	 * the word, definition, (optional) hint, and (optional) time.
+	 * It must be at least two elements and no more than four
+	 * elements where values[0] = word, values[1] = definition,
+	 * values[2] = hint, and values[3] = time.
+	 * 
+	 * @return a Card object 
+	 */
+	private static Card makeCard(String[] values) {
+		int length = values.length;
+		Card card = null;
+		
+		switch (length) {
+		case 2:
+			card = new Card(values[0], values[1]);
+			break;
+		case 3:
+			try {
+				card = new Card(values[0], values[1], Long.parseLong(values[2]));
+			} catch (NumberFormatException e) {
+				card = new Card(values[0], values[1], values[2]);
+			}
+			break;
+		case 4:
+			card = new Card(values[0], values[1], values[2], Long.parseLong(values[3]));
+			break;
+		}
+		
+		return card;
 	}
 	
 	/**writeCSV saves the progress of a user by copying the information

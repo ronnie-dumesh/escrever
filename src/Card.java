@@ -9,24 +9,65 @@ public class Card {
 	private String hint; //an optional hint 
 	private Long time; //associated time
 	
-	/**Constructor for the Card object 
+	
+	/** Constructor for the Card object
+	 * This constructor assigns a vocabulary word, the give definition,
+	 * a blank hint of " ", and a time to next be reviewed of the current time. 
 	 * 
-	 * @param vals is a String array that contains in order
-	 * the word, definition, (optional) hint, and (optional) time.
-	 * It must be at least two elements and no more than four
-	 * elements where vals[0] = word, vals[1] = definition,
-	 * vals[2] = hint, and vals[3] = time.
+	 * @param word is the card's associated word
+	 * @param def is the card's associated definition
 	 */
-	public Card(String[] vals) {
-		assert vals.length > 1;
-		this.word = vals[0];
-		this.def = vals[1];
-		this.hint = vals.length > 2 ? vals[2] : " ";
-		if (vals.length > 3) {
-	    	this.time = Long.parseLong(vals[3]);
-	    } else{
-	    	this.time = new Date().getTime();
-	    }
+	public Card(String word, String def) {
+		this.word = word;
+		this.def = def;
+		this.hint = " ";
+		this.time = new Date().getTime();
+	}
+	
+	/** Constructor for the Card object 
+	 * This constructor assigns a vocabulary word, the given definition,
+	 * the given hint, and a time to next be reviewed of the current time. 
+	 * 
+	 * @param word is the card's associated word
+	 * @param def is the card's associated definition
+	 * @param hint is the card's associated hint
+	 */
+	public Card(String word, String def, String hint) {
+		this.word = word;
+		this.def = def;
+		this.hint = hint;
+		this.time = new Date().getTime();
+	}
+	
+	/**Constructor for the Card object
+	 * This constructor assigns a vocabulary word, the given definition,
+	 * a blank hint of " ", and a time to next be reviewed. 
+	 * 
+	 * @param word is the card's associated word
+	 * @param def is the card's associated definition
+	 * @param time is the card's associated time
+	 */
+	public Card(String word, String def, Long time) {
+		this.word = word;
+		this.def = def;
+		this.hint = " ";
+		this.time = new Date().getTime();
+	}
+	
+	/** Constructor for the Card object
+	 * This constructor assigns a given vocabulary word, the given definition,
+	 * the given hint, and a time to next be reviewed 
+	 * 
+	 * @param word is the card's associated word
+	 * @param def is the card's associated definition
+	 * @param hint is the card's associated hint
+	 * @param time is the card's associated time 
+	 */
+	public Card(String word, String def, String hint, Long time) {
+		this.word = word;
+		this.def = def;
+		this.hint = hint;
+		this.time = time;
 	}
 	
 	/** @return toStringArray() returns a String Array where:
@@ -39,7 +80,7 @@ public class Card {
 	 * 
 	 */
 	public String[] toStringArray(){
-		String[] strArray = {getWord(), getDef(), getHint(), getTimeString()};
+		String[] strArray = {getWord(), getDef(), getHint(), Long.toString(getTime())};
 		return strArray;
 	}
 	
@@ -50,7 +91,7 @@ public class Card {
 	 * @return a String representation of the Card
 	 */
 	public String toString() {
-		return getWord() + " " + getDef() + " " + getHint() + " " + getTimeString(); 
+		return getWord() + " " + getDef() + " " + getHint() + " " + Long.toString(getTime()); 
 	}
 	
 	/** modifyTime is a function that changes the time of the Card
@@ -74,10 +115,7 @@ public class Card {
 	public String getHint() {return hint;}
 	
 	/**@return the Card's time as a Long*/
-	public Long getTimeLong() {return time;} 
-
-	/**@returns the Card's time as a String*/ 
-	public String getTimeString() {return time.toString();} 
+	public Long getTime() {return time;} 
 }
 
 /** Class cardComparator implements the Comparator interface
@@ -91,6 +129,6 @@ class cardComparator implements Comparator<Card>
 { 
     public int compare(Card a, Card b) 
     { 
-        return a.getTimeLong().compareTo(b.getTimeLong());
+        return a.getTime().compareTo(b.getTime());
     } 
 } 

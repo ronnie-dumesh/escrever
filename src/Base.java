@@ -6,6 +6,10 @@ public class Base {
 	//cards sorted by their time 
 	private static Card currentCard; //The current Card that is being modified
 	private static String path; //The path of the file to be modified 
+	static final Card doneCard = 
+			new Card("you are done! click save!", "", "", new Long(-1));
+			//The done Card indicates the user is finished
+	private static Boolean done = false; //Whether study session is finished
 	
 	/** importSet has the user select a CSV file from which to 
 	 * make a PriorityQueue of Card objects ordered by time. This
@@ -47,48 +51,29 @@ public class Base {
 	 * Card's current time is increased. 
 	 */
 	public static void nextCard(Delay delay) {
-		getCurrentCard().modifyTime(delay);
-		if(!end()) {
+		if(!done) {
+			getCurrentCard().modifyTime(delay);
 			queue.add(getCurrentCard());
 			setCurrentCard(queue.poll());
+			end();
 		}
 	}
 
 	/** end() determines whether the current set 
-	 * of Card objects is finished for studying based on 
-	 * whether the time of the Card with the highest priority
-	 * is greater than the current time of the System. 
+	 * of Card objects is finished studying. If it is,
+	 * it sets the currentCard to doneCard and
+	 * sets done to true. 
 	 * 
-	 * If this condition is met, false is returned
-	 * 
-	 * If this condition is not met, end() makes a new 
-	 * Card object that then displays to the user that
-	 * the current studying session is finished and
-	 * returns true
-	 * 
-	 * @return Boolean of whether the current set of 
-	 * Card objects is finished for studying 
 	 */
-	private static boolean end() {
-		Long nextCardTime = queue.peek().getTimeLong();
+	private static void end() {
+		Long nextCardTime = queue.peek().getTime();
 		Long currentTime = new Date().getTime();
-		if(nextCardTime < currentTime) {
-			return false;
-		} else {
-			//included to prevent last card from getting
-			//cut off and to prevent "you are done!" card from
-			//being included 
-			if(!currentCard.getDef().equals(" ")) { 
+		if(nextCardTime > currentTime) {
+			if(!done) {
 				queue.add(getCurrentCard());
 			}
-			//Card made to tell user they are finished 
-			String[] doneString = new String[3];
-			doneString[0] = "you are done! click save!";
-			doneString[1] = " ";
-			doneString[2] = "";
-			Card doneCard = new Card(doneString);
 			setCurrentCard(doneCard);
-			return true;
+			done = true;
 		}
 	}
 	
