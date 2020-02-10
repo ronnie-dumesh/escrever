@@ -11,4 +11,6 @@ A file must be formatted with a word in the first column, its accompanying defin
 
 Special characters are not currently supported.
 
+Some things I would've done differently are to add different "states" for when a the person is reviewing a word and for when they're deciding how long to delay the word for. I also would've made use of previously made CSV readers and writers.
+
 To save a file, a file must not be open anywhere else. 
