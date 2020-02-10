@@ -5,7 +5,7 @@ import java.util.Date;
  * associated with it for when it could next be made available for the rotation */ 
 public class Card {
 	private String word; //the Card's vocabulary word
-	private String def;  //the Card'sdefinition
+	private String def;  //the Card's definition
 	private String hint; //an optional hint 
 	private Long time; //associated time
 	

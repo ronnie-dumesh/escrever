@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
-public class csvModifier {
+public class CSVModifier {
 	
 	/** readCSV reads a CSV file to create Card objects and add
 	 * them to a priority queue 

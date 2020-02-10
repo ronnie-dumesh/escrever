@@ -25,8 +25,8 @@ public class Base {
 	 * (optional). 
 	 */
 	public static void importSet() {
-		path = csvModifier.chooseCSV();
-		queue = csvModifier.readCSV(path);
+		path = CSVModifier.chooseCSV();
+		queue = CSVModifier.readCSV(path);
 		setCurrentCard(queue.poll());
 		//included to prevent review from starting
 		//if all cards are not ready to be reviewed again
@@ -38,7 +38,7 @@ public class Base {
 	 * information about the Card objects. 
 	 */
 	public static void saveProgress() {
-		csvModifier.writeCSV(getQueueCopy(), path);
+		CSVModifier.writeCSV(getQueueCopy(), path);
 	}
 
 	/** nextCard increases the time of the current Card,
